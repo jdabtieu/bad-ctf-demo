@@ -17,6 +17,8 @@ def reset():
   db.execute("INSERT INTO users VALUES('admin', 'mypassword')")
   return
 
+reset()
+
 @app.route("/")
 def forum_home():
   # Demo: XSS
@@ -68,7 +70,7 @@ def admin_login():
   
   ret = "Ok, since you're the admin, here are all the users:\n<pre>"
   ret += "\n".join([x["username"] + " - " + x["password"] for x in db.execute("SELECT * FROM users")])
-  ret += "</pre"
+  ret += "</pre>"
   return ret
 
 @app.route("/meta/reset")
